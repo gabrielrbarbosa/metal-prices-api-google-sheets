@@ -8,6 +8,6 @@
 5) ctrl+s to save the script
 
 ## Usage in Google Sheets:
-`=GETPRICE("USD";"gold","g")`
+`=GETPRICE("USD";"gold";"g")`
 
 It will return the price of $1 worth of gold in this case.
