@@ -11,7 +11,8 @@
 //  It will return the price of $1 worth of gold in this case.
 */
 
-function GETPRICE(currency, metal, unit) {
+function GETPRICE(currency = 'USD', metal = 'gold', unit = 'g') {
+    let apiKey = "YOUR_API_KEY";
     let cacheHours = 24;
     let cache = CacheService.getScriptCache();
     let cached = cache.get(currency + metal);
@@ -19,9 +20,9 @@ function GETPRICE(currency, metal, unit) {
       return parseFloat(cached);
     }
 
-    let response = UrlFetchApp.fetch("https://api.metals.dev/v1/latest?api_key=YOUR_API_KEY&currency="+ currency + "&unit=" + unit);
+    let response = UrlFetchApp.fetch("https://api.metals.dev/v1/latest?api_key="+ apiKey + "&currency="+ currency + "&unit=" + unit);
     let json = JSON.parse(response.getContentText());
 
-    cache.put(base + metal, json.metals[metal], 60 * 60 * cacheHours);
+    cache.put(metal, json.metals[metal], 60 * 60 * cacheHours);
     return parseFloat(json.metals[metal]);
 }
