@@ -7,13 +7,13 @@
 //  5. CTRL+S to save the script.
 //
 //  Usage in Google Sheets:
-//  =GETPRICE("USD";"gold","g")
+//  =GETPRICE("USD";"gold";"g")
 //  It will return the price of $1 worth of gold in this case.
 */
 
 function GETPRICE(currency = 'USD', metal = 'gold', unit = 'g') {
     let apiKey = "YOUR_API_KEY";
-    let cacheHours = 24;
+    let cacheHours = 12;
     let cache = CacheService.getScriptCache();
     let cached = cache.get(currency + metal);
     if (cached != null) {
